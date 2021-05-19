@@ -1,7 +1,7 @@
 
 var mic;
 // var amp;
-// var volhistory = [];
+var volhistory = [];
 
 
 function setup() {
