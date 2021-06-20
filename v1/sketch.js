@@ -3,20 +3,24 @@ var mic;
 var amp;
 var volhistory = [];
 var video;
-var memoryVideos = [['../input/video_2.mp4'],['../input/video_1.mp4'],['../input/video_4.mp4']]
+var memoryVideos = [['../input/video_2.mp4'],['../input/video_1.mp4'],['../input/video_4.mp4'],['../input/video_5.mp4'],['../input/video_7.mp4'],['../input/video_8.mp4'],['../input/video_9.mp4']]
 
 function setup() {
 
 
+	alert('Dir werden gleich Videos vorgespielt. Das Ziel ist es durch eine ruhige Atmung Ruhe zu schaffen und die Videos verschwinden zu lassen. Atme hierfür durch die Nase ein und langsam durch den Mund hörbar aus. Der Kreis visualisiert deinen Atem und wenn du hörbar ausatmest wird er dir dies durch seine Position und Farbe anzeigen.');
 	var cnv = createCanvas(windowWidth, windowHeight);
 	// cnv.style('display', 'block');
 	cnv.style('display', 'inline');
 	
-
+	let awenser = confirm('Diese Website benutzt Ihr Mikrofon.');
+	
+	  
+	if (awenser == true){
 	mic = new p5.AudioIn();
 	mic.start();
 	amp = new p5.Amplitude();
-
+	}
 	
 
 	//video
@@ -76,7 +80,7 @@ function draw() {
 
 if (positionX > -300) { 						
 	noStroke();
-	fill(255, 204, 0);
+	fill(255, 255, 255);
 	ellipse (windowWidth/2, positionX , 100 , 100);
 
  } 
@@ -84,12 +88,13 @@ if (positionX > -300) {
 
  else { 
 	noStroke();
-	fill(255, 100, 0);
+	fill(89, 117, 255);
 	ellipse (windowWidth/2, positionX , 150 , 150);
 	
 	background('rgba(0%,0%,0%,0.25)');
-	// setTimeout(resetSketch, 3000);
-	resetSketch();
+	setTimeout(noVideo, 100);
+	setTimeout(resetSketch, 9000);
+	// resetSketch();
 
 
 	// for (i = 0; positionX > -130; i++) {
@@ -97,13 +102,20 @@ if (positionX > -300) {
 	//   }
 	
   } 
+function noVideo(){
+	
+	video = createVideo (['../input/video_black.mp4'],vidLoad);
+	video.size(windowWidth,windowHeight);
+	video.hide();
+	console.log("black video");
 
+}
 function resetSketch(){
 
 	video = createVideo (memoryVideos[Math.floor(Math.random() * memoryVideos.length)], vidLoad);
 	video.size(windowWidth,windowHeight);
 	video.hide();
-	console.log("new video")
+	console.log("new video");
 }
 
 
