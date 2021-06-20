@@ -93,7 +93,7 @@ if (positionX > -300) {
 	
 	background('rgba(0%,0%,0%,0.25)');
 	setTimeout(noVideo, 100);
-	setTimeout(resetSketch, 9000);
+	setTimeout(resetSketch, 5000);
 	// resetSketch();
 
 
